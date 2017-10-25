@@ -14,9 +14,6 @@ c2 = do
     putStrLn $ "4. 100 `div` 3 == 100 / 3"      ++ "?      -> "       ++ show (fromIntegral (100 `div` 3) == 100 / 3)
     putStrLn $ "5. 2 * 5 + 18  == 2 * (5 + 18)" ++ "? -> "            ++ show (2 * 5 + 18                 == 2 * (5 + 18))
 
-c3 :: IO ()
-c3 = pure ()
-
 waxOn :: Integer
 waxOn = x * 5
     where
@@ -25,7 +22,24 @@ waxOn = x * 5
         z = 7
 
 waxOff :: Integer -> Integer
-waxOff x = flip (^) 2 . triple $ x
+waxOff = (^ 2) . triple
 
 triple :: Integer -> Integer
 triple x = x * 3
+
+c3 :: IO ()
+c3 = do
+    putStrLn "Syntax Errors"
+    putStrLn $ "1. " ++ show ((++) [1, 2, 3] [4, 5, 6])  -- need brackets to prefix with an operator
+    putStrLn $ "2. " ++ show ("<3" ++ " Haskell")        -- double quotes needed for Strings
+    putStrLn $ "3. " ++ show (concat ["<3", " Haskell"]) -- works as-is, concat :: Foldable t => t [a] -> [a]
+    putStrLn ""
+    putStrLn $ "1. a. " ++ show (concat [[1, 2, 3], [4, 5, 6]]) -- works as-is
+    putStrLn $ "   b. " ++ show ((++) "hello" "world") -- need brackets to prefix with an operator
+    putStrLn $ "   c. " ++ show (["hello" ++ "world"]) -- missing end-quote
+    putStrLn $ "   d. " ++ show ("hello" !! 4) -- index comes after the bangs
+    putStrLn $ "   e. " ++ show ((!!) "hello" 4) -- works as-is
+
+
+c4 :: IO ()
+c4 = pure ()
