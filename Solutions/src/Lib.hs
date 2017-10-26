@@ -64,7 +64,7 @@ c3 = do
     where
         input = "Curry is awesome"
         bf_1a = (++"!")
-        bf_1b = pure . (!!4)
+        bf_1b = (:"") . (!!4)
         bf_1c = drop 9
 
         thirdLetter :: String -> Char
