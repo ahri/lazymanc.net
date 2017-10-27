@@ -113,6 +113,12 @@ c4 = do
     putStrLn $ " 8. palindrome: blahhalb -> " ++ show (isPalindrome "blahhalb")
     putStrLn $ " 9. myAbs 9 = " ++ show (myAbs 9) ++ ", myAbs -9 = " ++ show (myAbs (-9))
     putStrLn $ "10. f ('a', 'b') ('c', 'd') = " ++ show (f ('a', 'b') ('c', 'd'))
+    putStrLn   ""
+    putStrLn   "Match the function names to their types"
+    putStrLn   "1. show: c) Show a => a -> String"
+    putStrLn   "2. (==): b) Eq a => a -> a -> Bool"
+    putStrLn   "3. fst:  a) (a, b) -> a"
+    putStrLn   "4. (+):  d) Num a => a -> a -> a"
 
     where
         changeMood Blah = Woot
@@ -132,3 +138,12 @@ c4 = do
 
         f :: (a, b) -> (c, d) -> ((b, d), (a, c))
         f t1 t2 = ((snd t1, snd t2), (fst t1, fst t2))
+
+        c4_cs_1 xs = w `x` 1
+            where
+                x = (+)
+                w = length xs
+
+        c4_cs_2 x = x
+
+        c4_cs_3 (a, b) = a
