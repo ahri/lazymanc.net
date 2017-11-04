@@ -3,12 +3,12 @@ module C6 where
 c6 :: IO ()
 c6 = do
     putStrLn "Eq Instances"
-    putStrLn $ show (TisAn 5 == TisAn 5)
-    putStrLn $ show (Two 5 6 == Two 5 6)
-    putStrLn $ show (TisAnInt 5 == TisAnInt 5)
-    putStrLn $ show (TisAString "foo" == TisAString "foo")
-    putStrLn $ show (TisAString "foo" == TisAString "fo")
-    putStrLn $ show (TisAString "foo" == TisAnInt 7)
+    print (TisAn 5 == TisAn 5)
+    print (Two 5 6 == Two 5 6)
+    print (TisAnInt 5 == TisAnInt 5)
+    print (TisAString "foo" == TisAString "foo")
+    print (TisAString "foo" == TisAString "fo")
+    print (TisAString "foo" == TisAnInt 7)
 
 data TisAnInteger = TisAn Integer
 instance Eq TisAnInteger where

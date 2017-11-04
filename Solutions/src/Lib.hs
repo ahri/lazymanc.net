@@ -5,9 +5,10 @@ import           C3
 import           C4
 import           C5
 import           C6
+import           C7
 
 chapters :: IO ()
-chapters = output [c2, c3, c4, c5, c6] 2
+chapters = output [c2, c3, c4, c5, c6, c7] 2
 
 output :: [IO ()] -> Integer -> IO ()
 output [] _     = pure ()
