@@ -6,6 +6,9 @@ import           C4
 import           C5
 import           C6
 
+chapters :: IO ()
+chapters = output [c2, c3, c4, c5, c6] 2
+
 output :: [IO ()] -> Integer -> IO ()
 output [] _     = pure ()
 output (f:fs) i = do
@@ -16,5 +19,6 @@ output (f:fs) i = do
     f
     output fs (i + 1)
 
-chapters :: IO ()
-chapters = output [c2, c3, c4, c5, c6] 2
+myrev :: [a] -> [a]
+myrev []     = []
+myrev (x:xs) = myrev xs ++ [x]
