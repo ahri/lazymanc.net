@@ -14,9 +14,10 @@ extra-source-files:  README.md
 cabal-version:       >=1.10
 
 library
-  hs-source-dirs:      src
+  hs-source-dirs:      src/Adam
+                       src/Chris
   exposed-modules:     Lib
-  other-modules:       C2, C3, C4, C5, C6, C7
+  other-modules:       C2, C3, C4, C5, C6, ChrisC6, C7
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
 
