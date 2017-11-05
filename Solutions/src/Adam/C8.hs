@@ -40,11 +40,16 @@ mc91 x
     | otherwise = mc91 . mc91 $ x + 11
 
 wordNumber :: Int -> String
-wordNumber = concat . intersperse "-" . map digitToWord . digits
+wordNumber = concat . intersperse "-" . map digitToWord . digits'
 
 digits :: Int -> [Int]
 digits = map (read . charToString) . show
     where charToString = (:[])
+
+digits' :: Int -> [Int]
+digits' i
+    | i < 10 = [i]
+    | otherwise = (digits' . (`div` 10) $ i) ++ [mod i 10]
 
 digitToWord :: Int -> String
 digitToWord 0 = "zero"
