@@ -1,7 +1,7 @@
-module C6 where
+module C06 where
 
-c6 :: IO ()
-c6 = do
+c06 :: IO ()
+c06 = do
     putStrLn "Eq Instances"
     print (TisAn 5 == TisAn 5)
     print (Two 5 6 == Two 5 6)

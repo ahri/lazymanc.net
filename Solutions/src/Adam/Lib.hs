@@ -1,15 +1,15 @@
 module Lib where
 
-import           C2
-import           C3
-import           C4
-import           C5
-import           C6
-import           C7
-import           C8
+import           C02
+import           C03
+import           C04
+import           C05
+import           C06
+import           C07
+import           C08
 
 chapters :: IO ()
-chapters = output [c2, c3, c4, c5, c6, c7, c8] 2
+chapters = output [c02, c03, c04, c05, c06, c07, c08] 2
 
 output :: [IO ()] -> Integer -> IO ()
 output [] _     = pure ()

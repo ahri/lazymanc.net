@@ -1,7 +1,7 @@
-module C7 where
+module C07 where
 
-c7 :: IO ()
-c7 = do
+c07 :: IO ()
+c07 = do
     print $ addOneIfOdd 3
     print (roundTrip3 4::Int)
 

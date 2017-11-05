@@ -1,7 +1,7 @@
-module C5 where
+module C05 where
 
-c5 :: IO ()
-c5 = do
+c05 :: IO ()
+c05 = do
     putStrLn "5.4 Type Arguments"
     print $ 3.5 `plus` 2.7 -- seems to work fine without NoMonomorphismRestriction
     where

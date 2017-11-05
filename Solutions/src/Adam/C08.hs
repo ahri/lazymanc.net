@@ -1,9 +1,9 @@
-module C8 where
+module C08 where
 
 import           Data.List (intersperse)
 
-c8 :: IO ()
-c8 = do
+c08 :: IO ()
+c08 = do
     print $ recSum 5
     print $ mult 3 5
     print $ mult 5 3
