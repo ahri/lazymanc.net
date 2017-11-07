@@ -1,7 +1,7 @@
-module C3 where
+module C03 where
 
-c3 :: IO ()
-c3 = do
+c03 :: IO ()
+c03 = do
     putStrLn   "Syntax errors"
     putStrLn $ "1.    " ++ show ((++) [1, 2, 3] [4, 5, 6])  -- need brackets to prefix with an operator
     putStrLn $ "2.    " ++ show ("<3" ++ " Haskell")        -- double quotes needed for Strings

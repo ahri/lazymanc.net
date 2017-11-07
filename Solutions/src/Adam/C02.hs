@@ -1,7 +1,7 @@
-module C2 where
+module C02 where
 
-c2 :: IO ()
-c2 = do
+c02 :: IO ()
+c02 = do
     putStrLn "Parenthesization:"
     putStrLn $ "1. " ++ show (2 + 2 * 3 - 1)     ++ "    vs " ++ show ((2 + (2 * 3)) - 1)
     putStrLn $ "2. " ++ show ((^) 10 $ 1 + 1)    ++ "  vs " ++ show (10^(1 + 1))

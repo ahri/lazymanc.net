@@ -1,9 +1,9 @@
-module C4 where
+module C04 where
 
 data Mood = Blah | Woot deriving Show
 
-c4 :: IO ()
-c4 = do
+c04 :: IO ()
+c04 = do
     putStrLn   "4.3 Mood Swing"
     putStrLn   "1. Mood"
     putStrLn   "2. Blah, Woot"
