@@ -21,8 +21,11 @@ c09 = do
     print $ filter isUpper "HbEfLrLxO,"
     print $ capitalize "julie"
     print $ capitalizeAll "woot"
-    print $ caesar (+3) "Foo Bar Baz"
-    print $ caesar (+3) "Foo Bar Baz" == "Irr Edu Edc"
+
+    let encoded = caesar (+3) "Foo Bar Baz"
+    print encoded
+    print $ encoded == "Irr Edu Edc"
+    print $ caesar (subtract 3) encoded
 
 myWords :: String -> [String]
 myWords ""       = []
