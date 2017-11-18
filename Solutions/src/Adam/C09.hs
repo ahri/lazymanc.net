@@ -27,6 +27,19 @@ c09 = do
     print $ encoded == "Irr Edu Edc"
     print $ caesar (subtract 3) encoded
 
+    print $ myOr [False, True, False]
+    print $ myAny (> 6) [1, 5, 7]
+    print $ myElem 6 [4, 5, 6]
+    print $ myElem' 6 [4, 5, 6]
+    print $ myReverse [4, 5, 6]
+    print $ squish [[1, 2, 3], [4, 5, 6]]
+    print $ squishMap (\x -> [x, x]) [1, 2, 3]
+    print $ squishAgain [[1, 2, 3], [4, 5, 6]]
+    print $ myMaximumBy compare [1, 53, 9001, 10]
+    print $ myMinimumBy compare [1, 53, 9001, 10]
+    print $ myMaximum [1, 53, 9001, 10]
+    print $ myMinimum [1, 53, 9001, 10]
+
 myWords :: String -> [String]
 myWords ""       = []
 myWords (' ':cs) = myWords cs
@@ -101,3 +114,61 @@ capitalize (c:cs) = toUpper c : cs
 capitalizeAll :: String -> String
 capitalizeAll ""     = ""
 capitalizeAll (c:cs) = toUpper c : capitalizeAll cs
+
+myOr :: [Bool] -> Bool
+myOr []       = False
+myOr (True:_) = True
+myOr (_:xs)   = myOr xs
+
+myAny :: (a -> Bool) -> [a] -> Bool
+myAny _ [] = False
+myAny f (x:xs)
+        | f x = True
+        | otherwise = myAny f xs
+
+myElem :: Eq a => a -> [a] -> Bool
+myElem _ [] = False
+myElem x (y:ys)
+        | x == y = True
+        | otherwise = myElem x ys
+
+myElem' :: Eq a => a -> [a] -> Bool
+myElem' x = myAny (== x)
+
+myReverse :: [a] -> [a]
+myReverse []     = []
+myReverse (x:xs) = xs ++ [x]
+
+squish :: [[a]] -> [a]
+squish []     = []
+squish (x:xs) = x ++ squish xs
+
+squishMap :: (a -> [b]) -> [a] -> [b]
+squishMap _ []     = []
+squishMap f (x:xs) = f x ++ squishMap f xs
+
+squishAgain :: [[a]] -> [a]
+squishAgain [] = []
+squishAgain xs = squishMap id xs
+
+myMaximumBy :: (a -> a -> Ordering) -> [a] -> a
+myMaximumBy _ [x] = x
+myMaximumBy f (x:xs) = case f x recurse of
+    LT -> recurse
+    GT -> x
+    EQ -> x
+    where recurse = myMaximumBy f xs
+
+myMinimumBy :: (a -> a -> Ordering) -> [a] -> a
+myMinimumBy _ [x] = x
+myMinimumBy f (x:xs) = case f x recurse of
+    LT -> x
+    GT -> recurse
+    EQ -> x
+    where recurse = myMaximumBy f xs
+
+myMaximum :: (Ord a) => [a] -> a
+myMaximum = myMaximumBy compare
+
+myMinimum :: (Ord a) => [a] -> a
+myMinimum = myMinimumBy compare
