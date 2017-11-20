@@ -6,15 +6,12 @@ import ChrisCipher
 --and returns a list of strings, using spaces to separate the elements
 --of the string into words
 
-
 testC9 :: IO ()
 testC9 = do
     print $ myLines "here begins a poem\n" == "here begins a poem"
     print $ getNumbers "hello number 6" == "6"
 
 --mysplit s delim = 
-    -- Why does dropWhile (== ' ') "hello there" not drop the space?
-    -- Why does takeWhile (== ' ') "hello there" not return " "?
 
 myLines :: String -> String
 myLines = takeWhile (/= '\n')
