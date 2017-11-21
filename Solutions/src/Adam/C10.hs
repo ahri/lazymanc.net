@@ -14,6 +14,25 @@ c10 = do
     print $ sumDb theDatabase
     print $ avgDb theDatabase
 
+    print $ myAny even [1, 3, 5]
+    print $ myAny odd [1, 3, 5]
+
+    print $ myAny' even [1, 3, 5]
+    print $ myAny' odd [1, 3, 5]
+
+    print $ myElem 1 [1..10]
+    print $ myElem 1 [2..10]
+
+    print $ myReverse [1..5]
+
+    print $ myMap (+ 1) [1..3]
+
+    print $ myFilter even [1..3]
+
+    print $ squish [[1, 2, 3], [4, 5, 6]]
+    print $ squishMap id [[1, 2, 3], [4, 5, 6]]
+    print $ squishAgain [[1, 2, 3], [4, 5, 6]]
+
     where
         e5e :: String -> Int -> String
         e5e s n = s ++ show n
@@ -62,3 +81,55 @@ avgDb db = sum db / count db
         where
             sum = fromIntegral . sumDb
             count = fromIntegral . length . filterDbNumber
+
+stops = "pbtdkg"
+vowels = "aeiou"
+
+combinations = [(s1, v, s2) | s1 <- stops, v <- vowels, s2 <- stops, s1 == 'p']
+
+myAnd :: [Bool] -> Bool
+myAnd = foldr (&&) True
+
+myOr :: [Bool] -> Bool
+myOr = foldr (||) False
+
+myAny :: (a -> Bool) -> [a] -> Bool
+myAny f = foldr f''' False
+    where
+        f' c a = a || f c
+        f'' c a = (||) a $ f c
+        f''' = ((||) .) f
+
+myAny' :: (a -> Bool) -> [a] -> Bool
+myAny' = (`foldr` False) . ((||) .)
+
+myElem :: Eq a => a -> [a] -> Bool
+myElem x = (`foldr` False) (((||) .) (x ==)) -- TODO: pf
+
+myReverse :: [a] -> [a]
+myReverse = foldr f []
+    where f c a = a ++ [c]
+
+myMap :: (a -> b) -> [a] -> [b]
+myMap f = foldr f' []
+    where f' c a = f c : a
+
+myFilter :: (a -> Bool) -> [a] -> [a]
+myFilter f = foldr f' []
+    where
+        f' c a =
+            if f c
+            then c : a
+            else a
+
+squish :: [[a]] -> [a]
+squish = foldr f []
+    where f c a = c ++ a
+
+squishMap :: (a -> [b]) -> [a] -> [b]
+squishMap f = foldr f' []
+    where f' c a = f c ++ a
+
+squishAgain :: [[a]] -> [a]
+squishAgain = squishMap id
+
