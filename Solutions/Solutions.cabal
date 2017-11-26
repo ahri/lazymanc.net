@@ -16,8 +16,8 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src/Adam
                        src/Chris
-  exposed-modules:     Lib
-  other-modules:       C02, C03, C04, C05, C06, ChrisC6, ChrisC7, ChrisC8, ChrisC9, ChrisCipher, ChrisC10, C07, C08, C09, Cipher, C10
+  exposed-modules:     Lib, NinetyNineProblems
+  other-modules:       C02, C03, C04, C05, C06, ChrisC6, ChrisC7, ChrisC8, ChrisC9, ChrisCipher, ChrisC10, C07, C08, C09, Cipher, C10, C11
   build-depends:       base >= 4.7 && < 5
                      , time >= 1.6.0.1 && < 1.7
   default-language:    Haskell2010

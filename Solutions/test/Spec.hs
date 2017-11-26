@@ -1,4 +1,7 @@
 import           Lib
+import           NinetyNineProblems
 
 main :: IO ()
-main = chapters
+main = do
+    chapters
+    p99
