@@ -51,6 +51,50 @@ filterDbString = foldr f []
         f (DbString s) r = s : r
         f _ r = r
 
---getMostCommon :: [DatabaseItem] -> UTCTime
---getMostCommon dbi = 
-            
+getMostRecent :: [DatabaseItem] -> UTCTime
+getMostRecent = maximum . filterDbDate
+
+sumDb :: [DatabaseItem] -> Integer
+sumDb = sum . filterDbNumber
+
+--avgDb :: [DatabaseItem] -> Double
+--avgDb = (div x) . sum . filterDbNumber
+--    where
+--        x = length filterDbNumber
+
+fibs :: Num a => [a]
+fibs = 1 : scanl (+) 1 fibs
+
+fibs20 :: Num a => [a]
+fibs20 = take 20 $ fibs
+
+fibsF :: Num a => [a]
+fibsF = filter (\x -> x < 100) fibs
+
+factorialR :: Num a => [a] -> [a]
+factorialR = scanl (*) 1
+
+--factorialR20 :: Num a => [a] -> [a]
+factorialR20 = take 20 $ factorialR
+
+--1. Given the following sets of consonants and vowels:
+--  stops = "pbtdkg"
+--  vowels = "aeiou"
+    -- Write a function that takes inputs from stops and vowels
+    -- and makes 3-tuples of all possible stop-vowel-stop combinations. 
+
+stops = "pbtkgd"
+vowels = "oeiua"
+
+-- take a vowel and take two stops - repeat until all stops used up
+-- drop the vowel and repeat with a new one
+--f :: [(Char, Char, Char)]
+
+-- 2. 
+    -- Modify that function so that it only returns the combinations that begin with a p.
+
+
+-- 3. 
+    -- Now set up lists of nouns and verbs (instead of stops and
+    -- vowels) and modify the function to make tuples represent-
+    -- ing possible noun-verb-noun sentences
