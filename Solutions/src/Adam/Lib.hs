@@ -10,9 +10,10 @@ import           C08
 import           C09
 import           C10
 import           C11
+import           C12
 
 chapters :: IO ()
-chapters = output [c02, c03, c04, c05, c06, c07, c08, c09, c10, c11] 2
+chapters = output [c02, c03, c04, c05, c06, c07, c08, c09, c10, c11, c12] 2
 
 output :: [IO ()] -> Integer -> IO ()
 output [] _     = pure ()
