@@ -3,25 +3,18 @@
 module Cipher (caesar, vigenere) where
 
 import           Data.Char
+import           Data.List
 
 caesar :: (Int -> Int) -> String -> String
 caesar _ ""     = ""
 caesar f (c:cs) = rotate c f : caesar f cs
 
 vigenere :: String -> String -> String
-vigenere keyword = snd . foldr f (mask, "")
+vigenere keyword = snd . foldl' f (mask, "")
     where
-        f c (ms'@(m:ms), str) = if isAsciiLetter c
-            then (ms, c >>> shift : str)
-            else (ms', c : str)
-
--- TODO: why isn't the (broken) algorithm above the same as this (working) one?
--- vigenere keyword str = go mask str
---     where
---         go _ "" = ""
---         go ms'@(m:ms) (c:cs) = if isAsciiLetter c
---             then c >>> shift : go ms cs
---             else c : go ms' cs
+        f (ms'@(m:ms), str) c = if isAsciiLetter c
+            then (ms, str ++ [c >>> shift]) -- TODO: concat sucks :(
+            else (ms', str ++ [c])
 
             where
                 shift = if isLower c
