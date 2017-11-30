@@ -68,14 +68,14 @@ fibs = 1 : scanl (+) 1 fibs
 fibs20 :: Num a => [a]
 fibs20 = take 20 $ fibs
 
-fibsF :: Num a => [a]
+fibsF :: (Num a, Ord a) => [a]
 fibsF = filter (\x -> x < 100) fibs
 
 factorialR :: Num a => [a] -> [a]
 factorialR = scanl (*) 1
 
---factorialR20 :: Num a => [a] -> [a]
-factorialR20 = take 20 $ factorialR
+factorialR20 :: Num a => [a] -> [a]
+factorialR20 ns = take 20 $ factorialR ns
 
 --1. Given the following sets of consonants and vowels:
 --  stops = "pbtdkg"
