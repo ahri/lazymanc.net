@@ -86,13 +86,19 @@ factorialR20 ns = take 20 $ factorialR ns
 stops = "pbtkgd"
 vowels = "oeiua"
 
+--f _ [] = undefined
+f ss vs = go
+    where
+        gp [] (v1:vs) = go ss vs
+        go _ [] = []
+        go (s1:s2:ss) (v1: vs) = (s1, v1, s2) : (f ss (v1:vs)) 
+
 -- take a vowel and take two stops - repeat until all stops used up
 -- drop the vowel and repeat with a new one
 --f :: [(Char, Char, Char)]
 
 -- 2. 
     -- Modify that function so that it only returns the combinations that begin with a p.
-
 
 -- 3. 
     -- Now set up lists of nouns and verbs (instead of stops and
