@@ -101,12 +101,34 @@ instance TooMany Goats where
 -- tooMany (Goats 55)
 -- > False
 
---Reusing the TooMany typeclass, write an instance of the typeclass
---for the type (Int, String). This will require adding a language
---pragma named FlexibleInstances 5 if you do not use a newtype
---— GHC will tell you what to do.
---2. Make another TooMany instance for (Int, Int). Sum the values
---together under the assumption this is a count of goats from two
---fields.
---3. Make another TooMany instance, this time for (Num a, TooMany a)
---=> (a, a). This can mean wha
+data Person = MkPerson String Int
+
+data PersonR = PersonR { name :: String
+                       , age :: Int }
+                       deriving (Eq, Show)
+
+data BinaryTree a 
+    = Leaf
+    | Node (BinaryTree a) a (BinaryTree a)
+    deriving (Eq, Ord, Show)
+
+insert' :: Ord a => a -> BinaryTree a -> BinaryTree a
+insert' b Leaf = Node Leaf b Leaf
+insert' b (Node left a right)
+    | b == a = Node left a right
+    | b < a = Node (insert' b left) a right
+    | b > a = Node left a (insert' b right)
+
+mapTree :: (a -> b) -> BinaryTree a -> BinaryTree b
+mapTree _ Leaf = Leaf
+mapTree f (Node left a right) = Node (mapTree f left) (f a) (mapTree f right) 
+
+testTree' :: BinaryTree Integer
+testTree' = Node (Node Leaf 3 Leaf) 1 (Node Leaf 4 Leaf)
+mapExpected = Node (Node Leaf 4 Leaf) 2 (Node Leaf 5 Leaf)
+-- acceptance test for mapTree
+mapOkay = 
+    if mapTree (+1) testTree' == mapExpected
+    then print "yup okay!"
+    else error "test failed!"
+
