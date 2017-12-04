@@ -10,10 +10,10 @@ caesar _ ""     = ""
 caesar f (c:cs) = rotate c f : caesar f cs
 
 vigenere :: String -> String -> String
-vigenere keyword = snd . foldl' f (mask, "")
+vigenere keyword input = snd . foldl' f (mask, "") $ input
     where
         f (ms'@(m:ms), str) c = if isAsciiLetter c
-            then (ms, str ++ [c >>> shift]) -- TODO: concat sucks :(
+            then (ms, str ++ [c >>> shift])
             else (ms', str ++ [c])
 
             where
@@ -21,10 +21,10 @@ vigenere keyword = snd . foldl' f (mask, "")
                     then lowerShift
                     else upperShift
 
-                lowerShift = toLower m <?> 'a'
-                upperShift = toUpper m <?> 'A'
+                lowerShift = diff (toLower m) 'a'
+                upperShift = diff (toUpper m) 'A'
 
-        mask = concat . repeat $ keyword
+        mask = take (length input) . concat . repeat $ keyword
 
 diff :: Char -> Char -> Int
 diff x y = ord x - ord y

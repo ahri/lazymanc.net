@@ -13,8 +13,7 @@ import           C11
 import           C12
 
 chapters :: IO ()
-chapters = do
-    output [c02, c03, c04, c05, c06, c07, c08, c09, c10, c11, c12] 2
+chapters = output [c02, c03, c04, c05, c06, c07, c08, c09, c10, c11, c12] 2
     -- print $ foldl (\(x:xs, _) c -> (xs, c + x)) ([3, 2], 0) [4, 5]
     -- print $ myFoldl (\(x:xs, _) c -> (xs, c + x)) ([3, 2], 0) [4, 5]
     -- print $ foldr (\c (x:xs, _) -> (xs, c + x)) ([3, 2], 0) [4, 5]
