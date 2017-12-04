@@ -1,8 +1,10 @@
 module ChrisC12 where
 
-C12 :: IO () 
-C12 = do
-    print $ "testing C12"
+c12 :: IO () 
+c12 = do
+    print $ "a red fox" == replaceThe "the red fox"
+    print $ 10 == countVowelsF "the red fox is a very bad bad bad fox"
+    print $ 10 == countVowelsS "the red fox is a very bad bad bad fox"
 
 type Name = String
 type Age = Integer
@@ -26,7 +28,7 @@ data PersonInvalid = NameEmpty | AgeTooLow
 -- data Either a b = Left a | Right b
 
 mkPersonE :: Name -> Age -> Either PersonInvalid Person
-mkPersonE
+mkPersonE name age
     | name /= "" && age > 0 = Right $ Person name age
     | name == "" = Left NameEmpty
     | age < 0 = Left AgeTooLow
@@ -41,5 +43,39 @@ mkPersonE
 -- a: *
 -- f: * (because it is applied)
 
+replaceThe :: String -> String
+replaceThe s = unwords $ fmap (\x -> if x == "the" then "a" else x) $ words s
 
+isVowel :: Char -> Bool 
+isVowel 'a' = True
+isVowel 'e' = True
+isVowel 'u' = True
+isVowel 'i' = True
+isVowel 'o' = True
+isVowel _ = False
+
+--countTheBeforeVowel :: String -> Integer
+--countTheBeforeVowel s = go s b@"" c@0
+--    where
+--        go :: String -> String -> Integer -> Integer
+--        go [] b c = c
+--        go (s:ss) b c
+--            | b == "" && s == 't' = go ss "t" c
+--            | b == "t" && s == 'h' = go ss "th" c
+--            | b == "th" && s == 'e' = go ss "the" c
+--            | b == "the" && s == ' ' = go ss "the " c
+--            | b == "the " && (isVowel s) = go ss "" (c+1)
+--            | otherwise = go ss "" c
+
+countVowelsF :: String -> Integer
+countVowelsF s = foldr (+) 0 $ fmap (\x -> if (isVowel x) then 1 else 0) s
+
+-- Uses sum instead of foldr
+countVowelsS :: String -> Integer
+countVowelsS s = sum $ fmap (\x -> if (isVowel x) then 1 else 0) s
+
+newtype Word' = Word' String
+    deriving (Eq, Show)
+
+vowels = "aeiou"
 
