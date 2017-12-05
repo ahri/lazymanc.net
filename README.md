@@ -25,3 +25,7 @@ We're currently on chapter 11 (at time of writing - see slack channel for update
 _I appreciate that I've set this out quite strictly, and I hope that's not off-putting - I'm just very time-poor and have enough organisational experience to know what a time-sink any regular activity can be!_
 
 If you can get to Manchester, UK, on a weekly basis and are interested in joining, please join [the slack group I set up](https://join.slack.com/t/lazymanc/shared_invite/enQtMjQ5NDYyNDEzMzc3LTUyZTJjOTZmYTNlZjRmZmIzMDQ3NTMxMTIwYWQ2YzNkNzUxMzc4NmI2MGZhYjcxNDRkY2UxMzQ2MTdhODZjMDM).
+
+#### Output
+
+We post our solutions to a [repo](https://github.com/ahri/lazymanc.net/tree/master/Solutions), and maintain a [wiki](https://github.com/ahri/lazymanc.net/wiki).
