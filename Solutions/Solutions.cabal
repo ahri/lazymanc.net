@@ -17,8 +17,8 @@ library
   hs-source-dirs:      src/Adam
                        src/Adam/Advent2017
                        src/Chris
-  exposed-modules:     Lib, NinetyNineProblems
-  other-modules:       C02, C03, C04, C05, C06, C07, C08, C09, Cipher, C10, C11, Day01, ChrisC6, ChrisC7, ChrisC8, ChrisC9, ChrisCipher, ChrisC10, ChrisC11, ChrisC12
+  exposed-modules:     Lib
+  other-modules:       C02, C03, C04, C05, C06, C07, C08, C09, C10, C11, C12, Cipher, Day01, ChrisC6, ChrisC7, ChrisC8, ChrisC9, ChrisC10, ChrisC11, ChrisC12, ChrisCipher
   build-depends:       base >= 4.7 && < 5
                      , time >= 1.6.0.1 && < 1.7
   default-language:    Haskell2010
