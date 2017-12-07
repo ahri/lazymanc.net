@@ -1,4 +1,6 @@
-import           Lib
+import ChrisAddition 
 
 main :: IO ()
-main = chapters
+main = do
+    chrisMain
+    chrisRunQc
