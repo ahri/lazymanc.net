@@ -61,8 +61,12 @@ gameLoop game@(Game w g) = forever $ do
 
             if c `elem` g
                 then Left "Already guessed"
-                else Right $ guess c game
+                else Right c
 
-    either putStrLn (const $ pure ()) validate
+    either err next validate >>= gameLoop
+        where
+            err e = do
+                putStrLn e
+                pure game
 
-    pure (either (const game) id validate) >>= gameLoop
+            next c = pure $ guess c game
