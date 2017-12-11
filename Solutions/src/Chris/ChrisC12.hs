@@ -79,3 +79,5 @@ newtype Word' = Word' String
 
 vowels = "aeiou"
 
+myIterate :: (a -> a) -> a -> [a]
+myIterate f a = a : myIterate f (f a)
