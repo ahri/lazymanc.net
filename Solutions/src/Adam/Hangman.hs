@@ -47,7 +47,7 @@ gameLoop game@(Game w g) = forever $ do
 
     if failed game == 10
         then do
-            putStrLn "Lose!"
+            putStrLn $ "Lose! The word was " ++ w
             exitSuccess
         else pure()
 
@@ -63,7 +63,7 @@ gameLoop game@(Game w g) = forever $ do
                 then Left "Already guessed"
                 else Right c
 
-    either err next validate >>= gameLoop
+    either err next validate
         where
             err e = do
                 putStrLn e
