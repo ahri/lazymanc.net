@@ -4,6 +4,8 @@ import qualified C08
 import           Lib
 import           Test.Hspec
 import           Test.QuickCheck
+import           Test.QuickCheck.Checkers
+import           Test.QuickCheck.Classes
 
 main :: IO ()
 main = do
@@ -18,3 +20,9 @@ main = do
 
             it "identity is 1" $ do
                 property $ \(x :: Int) -> C08.mult x 1 == x
+
+            it "demo checkers library for monoid" $ do
+                quickBatch $ monoid (undefined :: [String])
+
+            it "demo checkers library for applicative" $ do
+                quickBatch $ applicative (undefined :: [(String, String, Int)])
