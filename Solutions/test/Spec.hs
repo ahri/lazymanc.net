@@ -1,6 +1,7 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 
 import qualified C08
+import qualified C17
 import           Lib
 import           Test.Hspec
 import           Test.QuickCheck
@@ -24,5 +25,11 @@ main = do
             it "demo checkers library for monoid" $ do
                 quickBatch $ monoid (undefined :: [String])
 
+            it "demo checkers library for monoid List" $ do
+                quickBatch $ monoid (undefined :: C17.List String)
+
             it "demo checkers library for applicative" $ do
                 quickBatch $ applicative (undefined :: [(String, String, Int)])
+
+            it "demo checkers library for applicative List" $ do
+                quickBatch $ applicative (undefined :: C17.List (String, String, Int))

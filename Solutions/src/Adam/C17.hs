@@ -3,7 +3,10 @@
 
 module C17 where
 
-import           Data.Monoid ((<>))
+import           Data.Semigroup           ((<>))
+import           Test.QuickCheck
+import           Test.QuickCheck.Checkers
+import           Test.QuickCheck.Classes
 
 data List a
     = Nil
@@ -22,3 +25,9 @@ instance Applicative List where
     _ <*> Nil          = Nil
     -- Cons f fs <*> xs = (f <$> xs) <> (fs <*> xs)
     fs <*> xs = foldMap (<$> xs) fs
+
+instance Arbitrary a => Arbitrary (List a) where
+    arbitrary = pure <$> arbitrary
+
+instance Eq a => EqProp (List a) where
+    (=-=) = eq

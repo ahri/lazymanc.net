@@ -29,7 +29,7 @@ instance Functor (Two a) where
 
 data Three a b c = Three a b c
 instance Functor (Three a b) where
-    fmap f (Three x y z) = Three x y $ f z
+    fmap f (Three x y z) = Three x y (f z)
 
 data Three' a b = Three' a b b
 instance Functor (Three' a) where
@@ -80,13 +80,24 @@ instance Functor (Quant a) where
     fmap f (Bloor b) = Bloor $ f b
 
 newtype Flip f a b = Flip (f b a) deriving (Eq, Show)
+newtype Flipp f a b c = Flipp (f c b a) deriving (Eq, Show)
+newtype NoFlip f a b = NoFlip (f a b) deriving (Eq, Show)
 
-newtype K a b = K a
+newtype K a b = K a deriving (Show)
 instance Functor (K a) where
     fmap _ (K x) = K x
 
 instance Functor (Flip K a) where
     fmap f (Flip (K x)) = Flip . K $ f x
+
+-- instance Functor (Flip (,) a) where
+--     fmap f (Flip (x, y)) = Flip (f x, y)
+
+instance Functor ((,,) a b) where
+    fmap f (x, y, z) = (x, y, f z)
+
+instance Functor (Flipp (,,) a b) where
+    fmap f (Flipp (x, y, z)) = Flipp (f x, y, z)
 
 newtype EvilGoateeConst a b = GoatyConst b
 instance Functor (EvilGoateeConst a) where
@@ -95,3 +106,7 @@ instance Functor (EvilGoateeConst a) where
 newtype LiftItOut f a = LiftItOut (f a)
 instance Functor f => Functor (LiftItOut f) where
     fmap f (LiftItOut x) = LiftItOut $ f <$> x
+
+newtype Mu f = InF { outF :: f (Mu f) }
+x = InF Nothing
+y = InF (K 1)
