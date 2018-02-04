@@ -2,6 +2,8 @@
 
 import qualified C08
 import qualified C17
+import ChrisAddition 
+import ChrisMonoidLaws
 import           Lib
 import           Test.Hspec
 import           Test.QuickCheck
@@ -11,6 +13,9 @@ import           Test.QuickCheck.Classes
 main :: IO ()
 main = do
     chapters
+    chrisMain
+    chrisRunQc
+    chrisMonoidLawsTest
     hspec $ do
         describe "Multiplication" $ do
             it "5 * 1 == 5" $ do
