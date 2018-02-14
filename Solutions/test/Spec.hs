@@ -9,6 +9,7 @@ import           Test.Hspec
 import           Test.QuickCheck
 import           Test.QuickCheck.Checkers
 import           Test.QuickCheck.Classes
+import MiguelSpec
 
 main :: IO ()
 main = do
@@ -38,3 +39,4 @@ main = do
 
             it "demo checkers library for applicative List" $ do
                 quickBatch $ applicative (undefined :: C17.List (String, String, Int))
+        miguelTests
