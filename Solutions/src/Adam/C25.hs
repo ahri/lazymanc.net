@@ -22,3 +22,11 @@ instance (Applicative f, Applicative g) => Applicative (Compose f g) where
     --  we can see that by partially applying, the `f` gets distributed over 
     --  the domain and codomain of the contained function, giving us just
     --  f a -> f b, which is what we need to get the expected type above
+
+--instance (Foldable f, Foldable g) => Foldable (Compose f g) where
+--    foldMap :: (Monoid m, Foldable t) => (a -> m) -> Compose f g a -> m
+--    foldMap f (Compose x) = f . foldMap id . foldMap id $ x
+
+--instance (Traversable f, Traversable g) => Traversable (Compose f g) where
+--    traverse :: (Applicative f, Traversable t) => (a -> f b) -> t a -> f (t b)
+--    traverse = undefined
