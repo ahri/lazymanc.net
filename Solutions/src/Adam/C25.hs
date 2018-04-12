@@ -23,10 +23,49 @@ instance (Applicative f, Applicative g) => Applicative (Compose f g) where
     --  the domain and codomain of the contained function, giving us just
     --  f a -> f b, which is what we need to get the expected type above
 
---instance (Foldable f, Foldable g) => Foldable (Compose f g) where
---    foldMap :: (Monoid m, Foldable t) => (a -> m) -> Compose f g a -> m
---    foldMap f (Compose x) = f . foldMap id . foldMap id $ x
+instance (Foldable f, Foldable g) => Foldable (Compose f g) where
+    foldMap f (Compose x) = (foldMap . foldMap) f x
 
---instance (Traversable f, Traversable g) => Traversable (Compose f g) where
---    traverse :: (Applicative f, Traversable t) => (a -> f b) -> t a -> f (t b)
---    traverse = undefined
+instance (Traversable f, Traversable g) => Traversable (Compose f g) where
+    traverse f (Compose x) = Compose <$> (traverse . traverse) f x
+
+class Bifunctor p where
+    {-# MINIMAL bimap | first, second #-}
+
+    bimap :: (a -> b) -> (c -> d) -> p a c -> p b d
+    bimap f g = first f . second g
+
+    first :: (a -> b) -> p a c -> p b c
+    first f = bimap f id
+
+    second :: (c -> d) -> p a c -> p a d
+    second f = bimap id f
+
+data Deux a b = Deux a b
+instance Bifunctor Deux where
+    bimap f g (Deux x y) = Deux (f x) (g y)
+
+data Const a b = Const a
+instance Bifunctor Const where
+    bimap f _ (Const x) = Const $ f x
+
+data Drei a b c = Drei a b c
+instance Bifunctor (Drei a) where
+    bimap f g (Drei x y z) = Drei x (f y) (g z)
+
+data SuperDrei a b c = SuperDrei a b
+instance Bifunctor (SuperDrei a) where
+    bimap f _ (SuperDrei x y) = SuperDrei x (f y)
+
+data SemiDrei a b c = SemiDrei a
+instance Bifunctor (SemiDrei a) where
+    bimap _ _ (SemiDrei x) = SemiDrei x
+
+data Quadriceps a b c d = Quadzzzz a b c d
+instance Bifunctor (Quadriceps a b) where
+    bimap f g (Quadzzzz a b c d) = Quadzzzz a b (f c) (g d)
+
+instance Bifunctor Either where
+    bimap f g x = case x of
+        Left a  -> Left $ f a
+        Right b -> Right $ g b
