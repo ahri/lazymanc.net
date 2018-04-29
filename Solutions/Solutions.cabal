@@ -20,10 +20,10 @@ library
                      , src/Chris
                      , src/Chris/Test
                      , src/Miguel
-  exposed-modules:     Lib, C08, C17
+  exposed-modules:     Lib, C08, C17, Cipher
                        ChrisC15
                        MiguelC21
-  other-modules:       C02, C03, C04, C05, C06, C07, C09, C10, C11, C12, C15, C16, C18, C22, C23, C24, C25, Cipher, Hangman, Day01
+  other-modules:       C02, C03, C04, C05, C06, C07, C09, C10, C11, C12, C15, C16, C18, C22, C23, C25, Hangman, Day01
                      , ChrisC6, ChrisC7, ChrisC8, ChrisC9, ChrisC10, ChrisC11, ChrisC12, ChrisCipher, ChrisAddition, ChrisMonoidLaws
   build-depends:       base >= 4.7 && < 5
                      , time
