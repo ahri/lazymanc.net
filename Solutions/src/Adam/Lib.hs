@@ -12,6 +12,7 @@ import           C10 hiding (myAnd)
 import           C11
 import           C12
 import           C16
+import           C22
 
 chapters :: IO ()
 chapters = output [c02, c03, c04, c05, c06, c07, c08, c09, c10, c11, c12, pure (), pure (), pure (), c16, pure (), pure (), pure (), pure (), pure (), c22] 2

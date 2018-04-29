@@ -1,6 +1,6 @@
 {-# LANGUAGE TypeOperators #-}
 
-module Cipher (caesar, vigenere) where
+module Cipher (caesar, vigenereEncrypt, vigenereDecrypt) where
 
 import           Data.Char
 import           Data.List
@@ -9,11 +9,17 @@ caesar :: (Int -> Int) -> String -> String
 caesar _ ""     = ""
 caesar f (c:cs) = rotate c f : caesar f cs
 
-vigenere :: String -> String -> String
-vigenere keyword input = snd . foldl' f (mask, "") $ input
+vigenereEncrypt :: String -> String -> String
+vigenereEncrypt = vigenere (>>>)
+
+vigenereDecrypt :: String -> String -> String
+vigenereDecrypt = vigenere (<<<)
+
+vigenere :: (Char -> Int -> Char) -> String -> String -> String
+vigenere rotator keyword input = snd . foldl' f (mask, "") $ input
     where
         f (ms'@(m:ms), str) c = if isAsciiLetter c
-            then (ms, str ++ [c >>> shift])
+            then (ms, str ++ [rotator c shift])
             else (ms', str ++ [c])
 
             where
@@ -44,6 +50,10 @@ isAsciiLetter = (`elem` (['a' .. 'z'] ++ ['A' .. 'Z']))
 infixl 6 >>>
 (>>>) :: Char -> Int -> Char
 c >>> i = rotate c (+ i)
+
+infixl 6 <<<
+(<<<) :: Char -> Int -> Char
+c <<< i = rotate c (subtract i)
 
 infixl 6 <?>
 (<?>) = diff
