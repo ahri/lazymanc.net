@@ -57,6 +57,26 @@ executable VigenereAdam
                      , Solutions
   default-language:    Haskell2010
 
+executable FingerdAdam
+  hs-source-dirs:      app
+  main-is:             FingerdAdam.hs
+  ghc-options:         -Werror -Wall -Wcompat -Wincomplete-uni-patterns -Wincomplete-record-updates -Widentities -Wredundant-constraints -Wmonomorphism-restriction -Wmissing-home-modules -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , bytestring
+                     , network
+                     , raw-strings-qq
+                     , sqlite-simple
+                     , text
+  default-language:    Haskell2010
+
+executable FingerdDebugAdam
+  hs-source-dirs:      app
+  main-is:             FingerdDebugAdam.hs
+  ghc-options:         -Werror -Wall -Wcompat -Wincomplete-uni-patterns -Wincomplete-record-updates -Widentities -Wredundant-constraints -Wmonomorphism-restriction -Wmissing-home-modules -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , network
+  default-language:    Haskell2010
+
 test-suite Solutions-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
