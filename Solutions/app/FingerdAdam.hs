@@ -4,10 +4,10 @@
 
 module Main where
 
-import Control.Exception
+import Control.Exception hiding (Handler)
 import Control.Monad (forever)
 import Data.List (intersperse)
-import Data.Text (Text)
+import Data.Text (Text, pack, splitOn)
 import qualified Data.Text as T
 import Data.Text.Encoding (decodeUtf8, encodeUtf8)
 
@@ -20,6 +20,10 @@ import Data.ByteString (ByteString)
 import qualified Data.ByteString as BS
 import Network.Socket.ByteString (recv, sendAll)
 import Text.RawString.QQ
+
+import System.Environment
+import System.Exit
+import System.IO
 
 data User = User
     { userId        :: Integer
@@ -49,19 +53,56 @@ instance Exception DuplicateData
 
 type UserRow = (Null, Text, Text, Text, Text, Text)
 
+type Handler = (Connection -> Socket -> ByteString -> IO ())
+
 main :: IO ()
-main = withSocketsDo $ do
+main = do
+    args <- getArgs
+    case args of
+        ["--server"] -> server 79 (\c s msg -> case msg of
+            "\r\n" -> returnUsers c s
+            name   -> returnUser c s (decodeUtf8 name))
+
+        ["--control"] -> server 1079 (\_ s msg -> case splitOn ":" . decodeUtf8 $ msg of
+            [username, shell, homeDirectory, realName, phone] -> do
+                addUser
+                    ( Null
+                    , username
+                    , shell
+                    , homeDirectory
+                    , realName
+                    , phone
+                    )
+                sendAll s . encodeUtf8 $ "Added!\r\n"
+                return ()
+            _ -> do
+                sendAll s . encodeUtf8 $ "Invalid input\r\n"
+                return ())
+
+        ["--add", username, shell, homeDirectory, realName, phone] ->
+            addUser
+                ( Null
+                , pack username
+                , pack shell
+                , pack homeDirectory
+                , pack realName
+                , pack phone
+                )
+        _            -> hPutStrLn stderr "Unrecognised args" >> exitFailure
+
+server :: Int -> Handler -> IO ()
+server port h = withSocketsDo $ do
     addrinfos <- getAddrInfo
         (Just (defaultHints
             {addrFlags = [AI_PASSIVE]}))
-        Nothing (Just "79")
+        Nothing (Just . show $ port)
     let serveraddr = head addrinfos
     sock <- socket (addrFamily serveraddr)
         Stream defaultProtocol
     bind sock (addrAddress serveraddr)
     listen sock 1 -- only one connection open at a time
     conn <- open "finger.db"
-    handleQueries conn sock
+    handleQueries conn sock h
     SQLite.close conn
     close sock
 
@@ -94,6 +135,13 @@ getUser conn username = do
         []     -> return $ Nothing
         [user] -> return $ Just user
         _      -> throwIO DuplicateData
+
+addUser :: UserRow -> IO ()
+addUser u = do
+    bracket
+        (open "finger.db")
+        SQLite.close
+        (\conn -> execute conn insertUser u)
 
 createDatabase :: IO ()
 createDatabase = do
@@ -136,18 +184,14 @@ returnUser dbConn soc username = do
         Just user ->
             sendAll soc (formatUser user)
 
-handleQuery :: Connection -> Socket -> IO ()
-handleQuery dbConn soc = do
+handleQuery :: Connection -> Socket -> Handler -> IO ()
+handleQuery dbConn soc h = do
     msg <- recv soc 1024
-    case msg of
-        "\r\n" -> returnUsers dbConn soc
-        name   ->
-            returnUser dbConn soc
-            (decodeUtf8 name)
+    h dbConn soc msg
 
-handleQueries :: Connection -> Socket -> IO ()
-handleQueries dbConn sock = forever $ do
+handleQueries :: Connection -> Socket -> Handler -> IO ()
+handleQueries dbConn sock h = forever $ do
     (soc, _) <- accept sock
     putStrLn "Got connection, handling query"
-    handleQuery dbConn soc
+    handleQuery dbConn soc h
     close soc
