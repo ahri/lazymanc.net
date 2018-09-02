@@ -31,6 +31,8 @@ library
                      , hspec
                      , QuickCheck
                      , checkers
+                     , lens
+                     , transformers
   default-language:    Haskell2010
 
 executable Solutions-exe
