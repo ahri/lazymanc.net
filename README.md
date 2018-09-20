@@ -20,11 +20,11 @@ For reasons of focus and of valuing everyone's time I'd be looking for a commitm
     - but do not attend if you've not put in the time to work through the chapter yourself - everyone's time and needs should be respected
 5. (Optionally!) go for a pint afterwards
 
-We're currently on chapter 11 (at time of writing - see slack channel for updates) and expect that new joiners would be able to catch up to that level in order to join!
-
 _I appreciate that I've set this out quite strictly, and I hope that's not off-putting - I'm just very time-poor and have enough organisational experience to know what a time-sink any regular activity can be!_
 
 If you can get to Manchester, UK, on a weekly basis and are interested in joining, please join [the slack group I set up](https://join.slack.com/t/lazymanc/shared_invite/enQtMjQ5NDYyNDEzMzc3LTUyZTJjOTZmYTNlZjRmZmIzMDQ3NTMxMTIwYWQ2YzNkNzUxMzc4NmI2MGZhYjcxNDRkY2UxMzQ2MTdhODZjMDM).
+
+#### See slack channel for current status and updates.
 
 #### Output
 
