@@ -2,9 +2,10 @@
 
 import qualified C08
 import qualified C17
-import ChrisAddition 
-import ChrisMonoidLaws
+import           ChrisAddition
+import           ChrisMonoidLaws
 import           Lib
+import           MiguelSpec
 import           Test.Hspec
 import           Test.QuickCheck
 import           Test.QuickCheck.Checkers
@@ -12,7 +13,6 @@ import           Test.QuickCheck.Classes
 
 main :: IO ()
 main = do
-    chapters
     chrisMain
     chrisRunQc
     chrisMonoidLawsTest
@@ -38,3 +38,6 @@ main = do
 
             it "demo checkers library for applicative List" $ do
                 quickBatch $ applicative (undefined :: C17.List (String, String, Int))
+        miguelTests
+
+    chapters

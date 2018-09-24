@@ -1,0 +1,98 @@
+name:                Solutions
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/ahri/lazymanc.net/Solutions
+license:             BSD3
+license-file:        LICENSE
+author:              lazymanc.net
+maintainer:          solutions@lazymanc.net
+copyright:           2017 lazymanc.net
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src/Adam
+                     , src/Adam/Advent2017
+                     , src/Adam/NinetyNineProblems
+                     , src/Chris
+                     , src/Chris/Test
+                     , src/Miguel
+  exposed-modules:     Lib, C08, C17, Cipher
+                       ChrisC15
+                       MiguelC21
+                       MiguelVigenere
+  other-modules:       C02, C03, C04, C05, C06, C07, C09, C10, C11, C12, C15, C16, C18, C22, C23, C25, Hangman, Day01
+                     , ChrisC6, ChrisC7, ChrisC8, ChrisC9, ChrisC10, ChrisC11, ChrisC12, ChrisCipher, ChrisAddition, ChrisMonoidLaws
+  build-depends:       base >= 4.7 && < 5
+                     , time
+                     , hspec
+                     , QuickCheck
+                     , checkers
+                     , lens
+                     , transformers
+  default-language:    Haskell2010
+
+executable Solutions-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , Solutions
+  default-language:    Haskell2010
+
+executable MiguelC29
+  hs-source-dirs:      app
+  main-is:             MiguelC29.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , Solutions
+  default-language:    Haskell2010
+
+executable VigenereAdam
+  hs-source-dirs:      app
+  main-is:             VigenereAdam.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , Solutions
+  default-language:    Haskell2010
+
+executable FingerdAdam
+  hs-source-dirs:      app
+  main-is:             FingerdAdam.hs
+  ghc-options:         -Werror -Wall -Wcompat -Wincomplete-uni-patterns -Wincomplete-record-updates -Widentities -Wredundant-constraints -Wmonomorphism-restriction -Wmissing-home-modules -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , bytestring
+                     , network
+                     , raw-strings-qq
+                     , sqlite-simple
+                     , text
+  default-language:    Haskell2010
+
+executable FingerdDebugAdam
+  hs-source-dirs:      app
+  main-is:             FingerdDebugAdam.hs
+  ghc-options:         -Werror -Wall -Wcompat -Wincomplete-uni-patterns -Wincomplete-record-updates -Widentities -Wredundant-constraints -Wmonomorphism-restriction -Wmissing-home-modules -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , network
+  default-language:    Haskell2010
+
+test-suite Solutions-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+                     , src/Chris/Test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , Solutions
+                     , hspec
+                     , QuickCheck
+                     , checkers
+  other-modules:       MiguelSpec
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/githubuser/Solutions

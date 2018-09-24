@@ -5,8 +5,9 @@ import           Cipher
 
 c11 :: IO ()
 c11 = do
-    print $ vigenere "ALLY" "MEET AT DAWN"
-    print $ vigenere "ALLY" "MEET AT DAWN" == "MPPR AE OYWY"
+    print $ vigenereEncrypt "ALLY" "MEET AT DAWN"
+    print $ vigenereEncrypt "ALLY" "MEET AT DAWN" == "MPPR AE OYWY"
+    print $ vigenereDecrypt "ALLY" "MPPR AE OYWY" == "MEET AT DAWN"
 
     print $ eval (Add (Lit 1) (Lit 9001))
 
