@@ -1,5 +1,5 @@
 ## Lazy Manc - Haskell Book Study Group
-> (Haskell is a pure and lazy functional language)
+> (Haskell is a pure, lazy, functional language)
 
 ### Do you want to learn Haskell from scratch in Manchester, UK? If so, join [the slack group](https://join.slack.com/t/lazymanc/shared_invite/enQtMjQ5NDYyNDEzMzc3LTUyZTJjOTZmYTNlZjRmZmIzMDQ3NTMxMTIwYWQ2YzNkNzUxMzc4NmI2MGZhYjcxNDRkY2UxMzQ2MTdhODZjMDM)
 
@@ -8,7 +8,7 @@ My name is Adam, I've been learning/applying Haskell fairly seriously in side pr
 
 My second try was to form this group and progress through the book together. This turned out really well; we finished the book and went on to study other bits and pieces that interested us and are currently studying another book in the same sort of format.
 
-There's been some interest from others who would like to learn Haskell to go through the book in the same way, and I think it could be helpful for those of us who have completed it to be on-hand to help that process. Not teaching, but aiding in self-study and provding a place to chat about and to explore problems.
+There's been some interest from others who would like to learn Haskell to go through the book in the same way, and I think it could be helpful for those of us who have completed it to be on-hand to help that process. Not teaching, but aiding in self-study and provding a place to chat about and to explore problems together.
 
 #### A commitment
 
@@ -26,7 +26,7 @@ _I appreciate that I've set this out quite strictly, and I hope that's not off-p
 
 If you can get to Manchester, UK, on a weekly basis and are interested in joining, please join [the slack group I set up](https://join.slack.com/t/lazymanc/shared_invite/enQtMjQ5NDYyNDEzMzc3LTUyZTJjOTZmYTNlZjRmZmIzMDQ3NTMxMTIwYWQ2YzNkNzUxMzc4NmI2MGZhYjcxNDRkY2UxMzQ2MTdhODZjMDM).
 
-**As this page will not be updated regularly, please defer to the channel content for up-to-date information**
+**As this page will not be updated regularly, please defer to the Slack channel content for up-to-date information**
 
 #### Output
 
