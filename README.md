@@ -1,7 +1,7 @@
 ## Lazy Manc - Haskell Book Study Group
 > (Haskell is a pure, lazy, functional language)
 
-### Do you want to learn Haskell from scratch in Manchester, UK? If so, join [the slack group](https://join.slack.com/t/lazymanc/shared_invite/enQtMjQ5NDYyNDEzMzc3LTUyZTJjOTZmYTNlZjRmZmIzMDQ3NTMxMTIwYWQ2YzNkNzUxMzc4NmI2MGZhYjcxNDRkY2UxMzQ2MTdhODZjMDM)
+### Do you want to learn Haskell from scratch in Manchester, UK? If so, join [the slack group](https://join.slack.com/t/lazymanc/shared_invite/enQtMjQ5NDYyNDEzMzc3LTUyZTJjOTZmYTNlZjRmZmIzMDQ3NTMxMTIwYWQ2YzNkNzUxMzc4NmI2MGZhYjcxNDRkY2UxMzQ2MTdhODZjMDM) - starting Monday October the 8th
 
 #### Who am I?
 My name is Adam, I've been learning/applying Haskell fairly seriously in side projects over the last couple of years but didn't feel that I'd broken away from my Object-Oriented day-job way of thinking about problems. I began to work through the [Haskell Book](http://haskellbook.com/) and got quite far, though I was a bit lax with the exercises, and eventually trailed off due to lack of motivation/time.
