@@ -1,7 +1,7 @@
 ## Lazy Manc - Haskell Book Study Group
 > (Haskell is a pure, lazy, functional language)
 
-### We're starting the book on Monday October the 8th
+### We're starting the book on Monday October the 8th at 19:00 at [Ziferblat](https://www.google.co.uk/maps/place/Ziferblat+Edge+Street/@53.48448,-2.236469,15z/data=!4m5!3m4!1s0x0:0xfdc0a56666ea0c4a!8m2!3d53.48448!4d-2.236469)
 **Participants will be expected to have read about [Currying and Partial Application](https://github.com/ahri/lazymanc.net/wiki/Currying-and-Partial-Application) and Chapter 2. _Chapter 1 is considered optional._**
 
 ### Do you want to learn Haskell from scratch in Manchester, UK? If so, join [the slack group](https://join.slack.com/t/lazymanc/shared_invite/enQtMjQ5NDYyNDEzMzc3LTUyZTJjOTZmYTNlZjRmZmIzMDQ3NTMxMTIwYWQ2YzNkNzUxMzc4NmI2MGZhYjcxNDRkY2UxMzQ2MTdhODZjMDM) - 
