@@ -89,6 +89,8 @@ prop_curryIso x y = iso x y == orig x y
     iso = curry' . uncurry' $ orig
     orig :: Int -> Int -> Int = (-)
 
+tests :: IO ()
+tests = quickCheck prop_curryIso
+
 main :: IO ()
-main = do
-  quickCheck prop_curryIso
+main = tests
