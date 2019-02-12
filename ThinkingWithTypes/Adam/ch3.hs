@@ -30,6 +30,7 @@ newtype T2 a = T2 (a -> Int)
 newtype T3 a = T3 (a -> a)
 newtype T4 a = T4 ((Int -> a) -> Int)
 newtype T5 a = T5 ((a -> Int) -> Int)
+newtype T5' a = T5' ((a -> Int) -> Int)
 
 -- Y
 instance Functor T1 where
@@ -55,3 +56,8 @@ instance Functor T4 where
 instance Functor T5 where
     fmap (g :: a -> b) (T5 (f :: (a -> Int) -> Int)) = T5 h
       where (h :: (b -> Int) -> Int) = \(h' :: b -> Int) -> f $ h' . g
+
+-- Y
+instance Functor T5' where
+    fmap g (T5' fn) = T5' (\fn2 -> fn (\x -> fn2(g(x))))
+
